@@ -1,5 +1,5 @@
 -- MySQL dump 10.13  Distrib 8.0.30, for Linux (x86_64)
---
+--a
 -- Host: localhost    Database: Companhia
 -- ------------------------------------------------------
 -- Server version	8.0.30-0ubuntu0.22.04.1
