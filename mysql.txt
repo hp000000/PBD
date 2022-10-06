@@ -1,0 +1,22 @@
+Comandos:
+
+mysql -uroot -proot
+
+show columns from Empregado;
+
+show create table Empregado;
+
+show databases;
+
+describe Empregado;
+
+
+\c
+
+
+select * from Empregado    
+//depois que tu add uma instância
+
+alter table Departamento alter nssger set default '888665555';
+
+
