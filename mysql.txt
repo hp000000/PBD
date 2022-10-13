@@ -30,3 +30,7 @@ rename table msql.Companhia to mysql.unicornio;
 
 
 alter table OS_Servico add column id_Servico int(11);
+
+
+alter table Materiais_Utilizados rename column Qaun
+tidade to Quantidade;
