@@ -20,3 +20,10 @@ select * from Empregado
 alter table Departamento alter nssger set default '888665555';
 
 
+
+
+Depois de vir do backup:
+mysql -uroot -proot
+use Companhia;
+
+rename table msql.Companhia to mysql.unicornio;
