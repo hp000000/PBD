@@ -34,3 +34,7 @@ alter table OS_Servico add column id_Servico int(11);
 
 alter table Materiais_Utilizados rename column Qaun
 tidade to Quantidade;
+
+
+ select id_OS_Servico as OS,Data as entrada,Descricao_OS from OS_Servico inner join
+ Servico ON OS_Servico.id_servico = Servico.id_Servico;
