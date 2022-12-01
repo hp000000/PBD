@@ -3,6 +3,7 @@
 /* Lógico_1: */
 
 `
+
 CREATE TABLE Servico (
     Id_Servico int(11) PRIMARY KEY
 );
