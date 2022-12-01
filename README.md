@@ -28,34 +28,34 @@ CREATE TABLE Sub_Servico (
     Id_Sub_Servico int(11) PRIMARY KEY,
     fk_OS_Servico_Id_OS_Servico int(11)
 );
-
+``
 CREATE TABLE Materias_Utilizados (
     Quantidade int(11),
     Id_Utilizados int(11) PRIMARY KEY,
     fk_OS_Servico_Id_OS_Servico int(11)
 );
-
+``
 CREATE TABLE Contem (
     fk_Materiais_Id_Material int(11),
     fk_Materias_Utilizados_Id_Utilizados int(11),
     valorEfetivo flaot
 );
- 
+`` 
 ALTER TABLE OS_Servico ADD CONSTRAINT FK_OS_Servico_2
     FOREIGN KEY (fk_Servico_Id_Servico)
     REFERENCES Servico (Id_Servico)
     ON DELETE CASCADE;
- 
+`` 
 ALTER TABLE Sub_Servico ADD CONSTRAINT FK_Sub_Servico_2
     FOREIGN KEY (fk_OS_Servico_Id_OS_Servico)
     REFERENCES OS_Servico (Id_OS_Servico)
     ON DELETE RESTRICT;
- 
+`` 
 ALTER TABLE Materias_Utilizados ADD CONSTRAINT FK_Materias_Utilizados_2
     FOREIGN KEY (fk_OS_Servico_Id_OS_Servico)
     REFERENCES OS_Servico (Id_OS_Servico)
     ON DELETE CASCADE;
- 
+`` 
 ALTER TABLE Contem ADD CONSTRAINT FK_Contem_1
     FOREIGN KEY (fk_Materiais_Id_Material)
     REFERENCES Materiais (Id_Material)
