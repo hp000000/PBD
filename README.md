@@ -3,18 +3,17 @@
 /* Lógico_1: */
 
 `
-
 CREATE TABLE Servico (
     Id_Servico int(11) PRIMARY KEY
 );
-
+``
 CREATE TABLE OS_Servico (
     Id_OS_Servico int(11) PRIMARY KEY,
     Data date,
     Descricao_OS varchar(500),
     fk_Servico_Id_Servico int(11)
 );
-
+``
 CREATE TABLE Materiais (
     Id_Material int(11) PRIMARY KEY,
     Descricao varchar(300),
