@@ -1,4 +1,4 @@
-#Comandos de criação e inserção das tabelas:
+# Comandos de criação e inserção das tabelas:
 
 /* Lógico_1: */
 
@@ -64,3 +64,15 @@ ALTER TABLE Contem ADD CONSTRAINT FK_Contem_2
     FOREIGN KEY (fk_Materias_Utilizados_Id_Utilizados)
     REFERENCES Materias_Utilizados (Id_Utilizados)
     ON DELETE SET NULL;
+
+
+# Inserção:
+$query = sprintf ("SELECT * FROM `os_servico` WHERE os_servico.fk_Servico_Id_Servico = '".$cliente."'");
+        $dados = mysqli_query($conn, $query); // conecta ao banco e guarda os dados na variavel $dados
+        $linha = mysqli_fetch_assoc($dados); // guarda a primeira linha da tabela
+        $total = mysqli_num_rows($dados); //retorna o numero de linhas
+        $query1 = sprintf ("SELECT * FROM `todos_servico_t` WHERE todos_servico_t.`ID Serviço` = '".$cliente."'");
+        $dados1 = mysqli_query($conn, $query1); // conecta ao banco e guarda os dados na variavel $dados
+        $linha1 = mysqli_fetch_assoc($dados1); // guarda a primeira linha da tabela
+        
+(esse comando compara o id de serviço  com a chave estrangeira  na tabela os_servico)   
