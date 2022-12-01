@@ -7,6 +7,7 @@ CREATE TABLE Servico (
     Id_Servico int(11) PRIMARY KEY
 );
 `
+
 `
 CREATE TABLE OS_Servico (
     Id_OS_Servico int(11) PRIMARY KEY,
@@ -15,6 +16,7 @@ CREATE TABLE OS_Servico (
     fk_Servico_Id_Servico int(11)
 );
 `
+
 `
 CREATE TABLE Materiais (
     Id_Material int(11) PRIMARY KEY,
@@ -23,6 +25,7 @@ CREATE TABLE Materiais (
     Local varchar(200)
 );
 `
+
 `
 CREATE TABLE Sub_Servico (
     Descricao_Sub_Servico varchar(300),
@@ -32,6 +35,7 @@ CREATE TABLE Sub_Servico (
     fk_OS_Servico_Id_OS_Servico int(11)
 );
 `
+
 `
 CREATE TABLE Materias_Utilizados (
     Quantidade int(11),
@@ -39,6 +43,7 @@ CREATE TABLE Materias_Utilizados (
     fk_OS_Servico_Id_OS_Servico int(11)
 );
 `
+
 `
 CREATE TABLE Contem (
     fk_Materiais_Id_Material int(11),
@@ -46,29 +51,36 @@ CREATE TABLE Contem (
     valorEfetivo flaot
 );
 `
+
 ` 
 ALTER TABLE OS_Servico ADD CONSTRAINT FK_OS_Servico_2
     FOREIGN KEY (fk_Servico_Id_Servico)
     REFERENCES Servico (Id_Servico)
     ON DELETE CASCADE;
 `
+
 ` 
 ALTER TABLE Sub_Servico ADD CONSTRAINT FK_Sub_Servico_2
     FOREIGN KEY (fk_OS_Servico_Id_OS_Servico)
     REFERENCES OS_Servico (Id_OS_Servico)
     ON DELETE RESTRICT;
 `
+
 ` 
 ALTER TABLE Materias_Utilizados ADD CONSTRAINT FK_Materias_Utilizados_2
     FOREIGN KEY (fk_OS_Servico_Id_OS_Servico)
     REFERENCES OS_Servico (Id_OS_Servico)
     ON DELETE CASCADE;
-`` 
+`
+
+` 
 ALTER TABLE Contem ADD CONSTRAINT FK_Contem_1
     FOREIGN KEY (fk_Materiais_Id_Material)
     REFERENCES Materiais (Id_Material)
     ON DELETE RESTRICT;
- 
+`
+
+`
 ALTER TABLE Contem ADD CONSTRAINT FK_Contem_2
     FOREIGN KEY (fk_Materias_Utilizados_Id_Utilizados)
     REFERENCES Materias_Utilizados (Id_Utilizados)
