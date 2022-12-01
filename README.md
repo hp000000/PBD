@@ -1,4 +1,4 @@
-# Comandos de criação e inserção das tabelas:
+# Comandos de criação das tabelas:
 
 /* Lógico_1: */
 
@@ -87,7 +87,7 @@ ALTER TABLE Contem ADD CONSTRAINT FK_Contem_2
     ON DELETE SET NULL;
 `
 
-# Inserção:
+# Inserção nas tabelas:
 `
 $query = sprintf ("SELECT * FROM 'os_servico' WHERE os_servico.fk_Servico_Id_Servico = '".$cliente."'");
         $dados = mysqli_query($conn, $query); // conecta ao banco e guarda os dados na variavel $dados
@@ -97,4 +97,50 @@ $query = sprintf ("SELECT * FROM 'os_servico' WHERE os_servico.fk_Servico_Id_Ser
         $dados1 = mysqli_query($conn, $query1); // conecta ao banco e guarda os dados na variavel $dados
         $linha1 = mysqli_fetch_assoc($dados1); // guarda a primeira linha da tabela
  `       
-(esse comando compara o id de serviço  com a chave estrangeira  na tabela os_servico)   
+/*Esse comando compara o id de serviço  com a chave estrangeira  na tabela os_servico   
+/*Além disso, ele consulta a tabela de visualização  todos_servico_t e compara com id de serviço e guarda na variável quer1 para gerar a descrição da os
+
+`
+$query1 = sprintf("SELECT * FROM `materias`"); // consulta a tabela materias
+        $dados1 = mysqli_query($conn, $query1); // conecta ao banco e guarda os dados na variavel $dados
+        $linha1 = mysqli_fetch_assoc($dados1); // guarda a primeira linha da tabela
+        $total1 = mysqli_num_rows($dados1); //retorna o numero de linhas
+`
+
+`
+// guarda os valores resebidos por post nas tabelas materiais utilizados e na tabela contem
+                        $query1 = sprintf(" INSERT INTO `materias_utilizados` (`Quantidade`,  `fk_OS_Servico_Id_OS_Servico`) VALUES ($quantidade[$i],  $id_os)");
+                            $sql = mysqli_query($conn, $query1);
+                             $query = sprintf ("SELECT * FROM `materias_utilizados` WHERE `Id_Utilizados` = LAST_INSERT_ID()");
+                             $dados = mysqli_query($conn, $query);
+                            $linha = mysqli_fetch_assoc($dados);
+                            $aux=$linha["Id_Utilizados"];
+
+
+                         mysqli_query($conn,"insert into contem values('$valor[$i]','$material[$i]','$aux')");
+`
+/*o for a seguir guarda os valores dos vetores enviados da tabela de cadastro de sub serviço e adiciona linha a linha
+`
+for($i=0;$i<count($descricao);$i++)
+                  {
+                      if($valor[$i]!="")
+                     {
+
+                         mysqli_query($conn,"insert into sub_servico values('$valor[$i]','NULL','$horas[$i]','$age','$descricao[$i]' )");  
+                       }
+                  }
+  `
+            
+/*esse comando adiciona valores a tabela os_servico e usando a função LAST_INSERT_ID() obtém o valor da nova os
+`
+$query1 = sprintf("INSERT INTO `os_servico` ( `Data`, `Descricao_OS`, `fk_Servico_Id_Servico`) VALUES ('$data', '$descricao', '$idservico');");
+            $sql = mysqli_query($conn, $query1);
+            $query = sprintf ("SELECT * FROM `os_servico` WHERE `Id_OS_Servico` = LAST_INSERT_ID()");
+            $dados = mysqli_query($conn, $query);
+            $linha = mysqli_fetch_assoc($dados);
+`
+/*essa parte adiciona materiais:
+`
+$query1 = sprintf("INSERT INTO `materias` (`descricao`, `valor`, `local`) VALUES ( '$descricao', '$valor', '$local');");
+            $sql = mysqli_query($conn, $query1);
+` 
